@@ -17,8 +17,8 @@
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                  <li><%= link_to "Home", "#" %></li>
-                  <li><%= link_to "Help", "#" %></li>
+                  <li><%= link_to "Home", root_path %></li>
+                  <li><%= link_to "Help", help_path %></li>
                   <li><%= link_to "Sign in", "#" %></li>
               </ul>
           </div>
@@ -30,5 +30,21 @@
       <%= yield %>
     </div>
 
+    <hr>
+    <!-- Footer -->
+    <footer class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <p>Copyright &copy; spacemonkeythe 2014</p>
+            </div>
+            <nav class="pull-right col-lg-4">
+              <ul>
+                <li><%= link_to "About Us", about_path %></li>
+                <li><%= link_to "Contact Us", contact_path %></li>
+                <li><%= link_to "News", "http://news.railstutorial.org/" %></li>
+              </ul>
+            </nav>
+        </div>
+    </footer>
   </body>
 </html>
