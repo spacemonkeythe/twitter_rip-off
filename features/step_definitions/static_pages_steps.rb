@@ -29,3 +29,13 @@ end
 Then(/^I can see contact page content$/) do
   page.find("h1", text: "Contact Us")
 end
+
+When(/^I visit Signup page$/) do
+  find_link("Sign up now!").click
+end
+
+Then(/^I can see signup content$/) do
+  page.find("h1", text: "Sign up")
+end
+
+
