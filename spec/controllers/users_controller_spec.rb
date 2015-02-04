@@ -35,4 +35,47 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
+  describe "POST create" do
+    before do
+      @user = double(User)
+      allow(User).to receive(:new) { @user }
+      @params = { name: "Test1", email: "test1@test.com", password: "testpassword1", password_confirmation: "testpassword1" }
+    end
+
+    it "saves a user" do
+      expect(@user).to receive(:save)
+      post :create, user: @params
+    end
+
+    context "saving user in the database is OK" do
+      before do
+        allow(@user).to receive(:save) { true }
+        post :create, user: @params
+      end
+
+      it "flashes :success" do
+        expect(flash[:success]).to eql("Welcome to the Twitter rip-off app!")
+      end
+
+      it "redirects to user profil page" do
+        expect(response).to redirect_to(users_path(@user))
+      end
+    end
+
+    context "saving user to the database is not OK" do
+      before do
+        allow(@user).to receive(:save) { false }
+        post :create, user: @params
+      end
+
+      it "assigns @user" do
+        expect(assigns(:user)).to eql(@user)
+      end
+
+      it "renders the signin page" do
+        expect(response).to render_template("new")
+      end
+    end
+  end
+
 end
