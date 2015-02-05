@@ -18,3 +18,7 @@ Feature: User can see home and help page
   Scenario: User can view Contacat page
     When I visit application's contact page
     Then I can see contact page content
+
+  Scenario: User can visit Signup page
+    When I visit Signup page
+    Then I can see signup content

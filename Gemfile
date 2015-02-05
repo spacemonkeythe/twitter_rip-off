@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "bootstrap-sass", "3.3.3"
+gem "bcrypt"
 
 group :development, :test do
   gem 'debugger'
@@ -21,5 +22,7 @@ end
 group :test do
   gem "cucumber-rails", :require => false
   gem "database_cleaner"
+  gem 'shoulda-matchers'
+  gem "factory_girl_rails"
 end
 
