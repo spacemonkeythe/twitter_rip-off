@@ -17,7 +17,7 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "GET show" do
     before do
-      @user = double(User);
+      @user = double(User)
       allow(User).to receive(:find) { @user }
       get :show, id: 1
     end
@@ -37,7 +37,7 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "POST create" do
     before do
-      @user = double(User)
+      @user = double(User, id: 1)
       allow(User).to receive(:new) { @user }
       @params = { name: "Test1", email: "test1@test.com", password: "testpassword1", password_confirmation: "testpassword1" }
     end
@@ -50,6 +50,12 @@ RSpec.describe UsersController, :type => :controller do
     context "saving user in the database is OK" do
       before do
         allow(@user).to receive(:save) { true }
+
+        allow(@user).to receive(:to_model) { @user }
+        allow(@user).to receive(:persisted?) { true }
+        allow(@user).to receive(:model_name) { @user }
+        allow(@user).to receive(:singular_route_key) { "users" }
+
         post :create, user: @params
       end
 
