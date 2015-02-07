@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.paginate(per_page: 5,page: params[:page])
   end
 
   def new
@@ -41,6 +41,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    flash[:notice] = "A user has been removed."
+    redirect_to root_path
+  end
+
   private
 
   def user_params
@@ -51,7 +57,7 @@ class UsersController < ApplicationController
     unless logged_in?
       store_location
       flash[:danger] = "Please log in."
-      redirect_to login_url
+      redirect_to login_path
     end
   end
 

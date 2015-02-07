@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  get "/admin", to: "admin/users#index", as: "admin"
+
+  namespace :admin do
+    resources :users, except: [:new, :create]
+  end
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -16,5 +22,7 @@ Rails.application.routes.draw do
   get "static_pages/help", as: "help"
   get "static_pages/about", as: "about"
   get "static_pages/contact", as: "contact"
+
+  get "*not_found", to: "errors#not_found", as: :not_found
 
 end

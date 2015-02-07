@@ -11,6 +11,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "bootstrap-sass", "3.3.3"
 gem "bcrypt"
+gem "will_paginate"
+gem "bootstrap-will_paginate"
 
 group :development, :test do
   gem 'debugger'
