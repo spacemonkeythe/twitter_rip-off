@@ -15,7 +15,7 @@ end
 
 When(/^I try to log in without email$/) do
   visit login_path
-fill_in "Password", with: @user.password
+  fill_in "Password", with: @user.password
   click_button "Sign in"
 end
 

@@ -1,5 +1,5 @@
 <% provide(:title, "Edit user") %>
-<h1 class="form-signin-heading center">Update your profile</h1>
+<h1 class="form-signin-heading center">Update user's profile</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
 
@@ -24,6 +24,8 @@
         <%= f.label :password_confiramtion, "Confirmation", class: "control-label" %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
+
+      <%= f.submit "Update my account", class: "btn btn-large btn-primary" %> |
 
       <%= link_to "Delete", [:admin, @user], method: :delete, data: { confirm: "You sure?" } %>
 

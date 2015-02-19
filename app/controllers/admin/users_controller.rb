@@ -1,21 +1,18 @@
 class Admin::UsersController < ApplicationController
   before_action :correct_user
+  before_action :find_user, except: [:index]
 
   def index 
     @users = User.paginate(per_page: 5, page: params[:page])
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else
@@ -24,7 +21,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "A user has been removed."
     redirect_to admin_users_path
@@ -39,5 +35,9 @@ class Admin::UsersController < ApplicationController
 
   def correct_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 end
