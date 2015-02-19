@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h1 {
+#error_404_title {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -124,5 +124,15 @@ h1 {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
+  }
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
   }
 }
