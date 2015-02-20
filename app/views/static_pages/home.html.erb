@@ -1,14 +1,32 @@
 <% provide(:title, "Home") %>
 
-<div class="center jumbotron hero-spacer">
-  <h1>Welcome to Twitter rip-off app</h1>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="tweets_form">
+        <%= render 'shared/tweets_form' %>
+      </section>
+    </aside>
+      <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+  </div>
+<% else %>
+  <div class="center jumbotron hero-spacer">
+    <h1>Welcome to Twitter rip-off app</h1>
 
-  <h2>
-    This is the home page for the <a href="https://twitter.com/spacemonkeyThe">spacemonkeythe's</a> sample application.
-  </h2>
+    <h2>
+      This is the home page for the <a href="https://twitter.com/spacemonkeyThe">spacemonkeythe's</a> sample application.
+    </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  </div>
 
-<%= link_to image_tag("rails.png", alt: "rails"), "http://rubyonrails.org" %>
+  <%= link_to image_tag("rails.png", alt: "rails"), "http://rubyonrails.org" %>
+<% end %>
 

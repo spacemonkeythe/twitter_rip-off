@@ -15,3 +15,9 @@
                password: password,
                password_confirmation: password)
 end
+
+users = User.order(:created_at).take(5)
+30.times do |n|
+  content = "This is the sample tweet for a sample user."
+  users.each { |user| user.tweets.create!(content: content) }
+end
