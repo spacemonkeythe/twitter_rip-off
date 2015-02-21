@@ -4,6 +4,8 @@ RSpec.describe User, :type => :model do
   it { is_expected.to have_db_column(:name).of_type(:string) }
   it { is_expected.to have_db_column(:email).of_type(:string) }
   it { is_expected.to have_db_column(:password_digest).of_type(:string) }
+  it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
+  it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
 
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_length_of(:name).is_at_most(50) }
@@ -14,6 +16,8 @@ RSpec.describe User, :type => :model do
   it { is_expected.to validate_presence_of(:password) }
   it { is_expected.to validate_length_of(:password).is_at_least(8) }
   it { is_expected.to validate_presence_of(:password_confirmation) }
+
+  it { is_expected.to have_many(:tweets) }
 
   describe ".create_remember_token" do
     before do
