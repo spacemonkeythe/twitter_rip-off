@@ -88,19 +88,25 @@ RSpec.describe UsersController, :type => :controller do
   describe "GET show" do
     before do
       @user = double(User)
+      @tweets = double("Tweets")
+      allow(@user).to receive_message_chain(:tweets, :paginate) { @tweets }
       allow(User).to receive(:find) { @user }
       get :show, id: 1
     end
 
-    xit "returns HTTP succes" do
+    it "returns HTTP succes" do
       expect(response).to have_http_status(:success)
     end
 
-    xit "assigns @user" do
+    it "assigns @user" do
       expect(assigns(:user)).to eql(@user)
     end
 
-    xit "renders show template" do
+    it "assigns @tweets" do
+      expect(assigns(:tweets)).to eql(@tweets)
+    end
+
+    it "renders show template" do
       expect(response).to render_template("show")
     end
   end
