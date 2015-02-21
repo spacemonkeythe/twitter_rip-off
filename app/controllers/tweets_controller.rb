@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
 
 
   def create
-    @tweet = current_user.tweets.build(tweet_params) if logged_in?
+    @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
       flash[:success] = "Tweet created!"
       redirect_to root_url
@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     flash[:success] = "Tweet deleted"
-    redirect_to request.referrer || root_url
+    redirect_to root_url
   end
 
   private
